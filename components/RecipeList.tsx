@@ -4,9 +4,10 @@ import RecipeCard from "./RecipeCard";
 interface RecipeListProps {
   recipes: Recipe[];
   onToggleFavorite: (id: number) => void;
+  onEdit: (recipe: Recipe) => void;   // ← новое
 }
 
-const RecipeList = ({ recipes, onToggleFavorite }: RecipeListProps) => {
+const RecipeList = ({ recipes, onToggleFavorite, onEdit }: RecipeListProps) => {
   return (
     <div>
       {recipes.length === 0 ? (
@@ -17,6 +18,7 @@ const RecipeList = ({ recipes, onToggleFavorite }: RecipeListProps) => {
             key={recipe.id}
             recipe={recipe}
             onToggleFavorite={onToggleFavorite}
+            onEdit={onEdit}
           />
         ))
       )}

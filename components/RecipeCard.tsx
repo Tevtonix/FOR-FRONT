@@ -4,12 +4,12 @@ import { useTooltip } from "../hooks/useTooltip";
 interface RecipeCardProps {
   recipe: Recipe;
   onToggleFavorite: (id: number) => void;
+  onEdit: (recipe: Recipe) => void;   // ← новое
 }
 
-const RecipeCard = ({ recipe, onToggleFavorite }: RecipeCardProps) => {
-  // Используем кастомный хук для тултипа
+const RecipeCard = ({ recipe, onToggleFavorite, onEdit }: RecipeCardProps) => {
   const { isVisible, show, hide } = useTooltip();
-  const tooltipText = recipe.tooltipText; // текст подсказки из данных
+  const tooltipText = recipe.tooltipText;
 
   return (
     <div
@@ -21,13 +21,11 @@ const RecipeCard = ({ recipe, onToggleFavorite }: RecipeCardProps) => {
         background: "#fafafa",
         position: "relative",
       }}
-      // Навешиваем обработчики только если есть текст подсказки
       onMouseEnter={tooltipText ? show : undefined}
       onMouseLeave={tooltipText ? hide : undefined}
     >
       <h3>
         {recipe.title}{" "}
-        {/* Звёздочка избранного — кликабельная */}
         <span
           onClick={() => onToggleFavorite(recipe.id)}
           style={{
@@ -43,23 +41,37 @@ const RecipeCard = ({ recipe, onToggleFavorite }: RecipeCardProps) => {
       </h3>
       <p>{recipe.description}</p>
 
-      {/* Кнопка добавления/удаления из избранного */}
-      <button
-        onClick={() => onToggleFavorite(recipe.id)}
-        style={{
-          padding: "6px 12px",
-          borderRadius: "6px",
-          border: "1px solid #ccc",
-          background: recipe.isFavorite ? "#f5b301" : "#fff",
-          color: recipe.isFavorite ? "#fff" : "#333",
-          cursor: "pointer",
-          fontWeight: 500,
-        }}
-      >
-        {recipe.isFavorite ? "Убрать из избранного" : "В избранное"}
-      </button>
+      <div style={{ display: "flex", gap: "8px" }}>
+        <button
+          onClick={() => onToggleFavorite(recipe.id)}
+          style={{
+            padding: "6px 12px",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+            background: recipe.isFavorite ? "#f5b301" : "#fff",
+            color: recipe.isFavorite ? "#fff" : "#333",
+            cursor: "pointer",
+            fontWeight: 500,
+          }}
+        >
+          {recipe.isFavorite ? "Убрать из избранного" : "В избранное"}
+        </button>
 
-      {/* Рендерим подсказку при видимости */}
+        {/* Кнопка редактирования */}
+        <button
+          onClick={() => onEdit(recipe)}
+          style={{
+            padding: "6px 12px",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+            background: "#fff",
+            cursor: "pointer",
+          }}
+        >
+          Редактировать
+        </button>
+      </div>
+
       {tooltipText && isVisible && (
         <span
           style={{
