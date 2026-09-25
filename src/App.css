@@ -1,0 +1,401 @@
+/* ===== RecipeForm ===== */
+
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.recipe-form__title {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.recipe-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recipe-form__field label {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.recipe-form__field input {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text-h);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.recipe-form__field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.recipe-form__submit {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.recipe-form__submit:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow);
+}
+
+.recipe-form__field input.is-invalid {
+  border-color: #e5484d;
+}
+
+.recipe-form__field input.is-invalid:focus {
+  border-color: #e5484d;
+  box-shadow: 0 0 0 3px rgba(229, 72, 77, 0.15);
+}
+
+/* Сообщение об ошибке */
+.recipe-form__error {
+  font-size: 12px;
+  color: #e5484d;
+  margin-top: 2px;
+}
+
+/* Неактивная кнопка */
+.recipe-form__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+.recipe-form__submit:disabled:hover {
+  background: var(--bg);
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+/* ===== Modal ===== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text);
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.modal-close:hover {
+  background: var(--code-bg);
+}
+
+/* Анимации появления/исчезновения */
+.modal-enter {
+  opacity: 0;
+}
+.modal-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.modal-exit {
+  opacity: 1;
+}
+.modal-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+/* ===== ConfirmDialog ===== */
+
+.confirm-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.confirm-dialog__message {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-h);
+}
+
+.confirm-dialog__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* ===== Кнопка опасного действия ===== */
+
+.btn--danger {
+  background: #e5484d;
+  color: #fff;
+  border-color: #e5484d;
+}
+
+.btn--danger:hover {
+  background: #cf3a3f;
+  border-color: #cf3a3f;
+  box-shadow: var(--shadow);
+}
+
+/* ===== FilterBar ===== */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.filter-bar__tabs {
+  display: flex;
+  gap: 8px;
+  padding-right: 8px;
+  border-right: 1px solid var(--border);
+}
+
+.filter-bar__categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-bar__tab,
+.filter-bar__category {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.filter-bar__tab:hover,
+.filter-bar__category:hover {
+  border-color: var(--accent-border);
+}
+
+.filter-bar__tab.is-active {
+  background: #f5b301;
+  border-color: #f5b301;
+  color: #fff;
+  font-weight: 600;
+}
+
+.filter-bar__category.is-active {
+  background: var(--code-bg);
+  border-color: var(--accent-border);
+  font-weight: 600;
+}
+
+/* ===== Подсветка совпадений при поиске ===== */
+
+.highlight {
+  background: #fff3a3;
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* Тёмная тема */
+@media (prefers-color-scheme: dark) {
+  .highlight {
+    background: #7c6a00;
+    color: #fff8c5;
+  }
+}
+
+/* ===== SearchBar ===== */
+
+.search-bar {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.search-bar__input {
+  width: 100%;
+  padding: 8px 36px 8px 10px;   /* справа отступ под крестик */
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-bar__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.search-bar__clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.search-bar__clear:hover {
+  background: var(--code-bg);
+  color: var(--text-h);
+}
+
+.recipe-card__category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.recipe-card__category select {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.recipe-card__category select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.recipe-card__ingredients {
+  margin-top: 12px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.recipe-card__ingredients ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.recipe-card__ingredients li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.recipe-card__remove-ing {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.recipe-card__remove-ing:hover {
+  background: #e5484d;
+  border-color: #e5484d;
+  color: #fff;
+}
+
+.recipe-card__add-ing {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.recipe-card__add-ing input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 13px;
+  outline: none;
+}
+
+.recipe-card__add-ing input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
