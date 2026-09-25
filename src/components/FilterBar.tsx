@@ -15,11 +15,11 @@ const FilterBar = ({
 }: FilterBarProps) => {
   return (
     <div className="filter-bar">
-      {/* Вкладка "Избранное" */}
-      <div className="filter-bar__tabs">
+      <div className="filter-bar__group">
         <button
-          className={`filter-bar__tab ${
-            showFavorites ? 'is-active' : ''
+          type="button"
+          className={`filter-bar__item ${
+            showFavorites ? "is-active is-fav" : ""
           }`}
           onClick={onToggleFavorites}
         >
@@ -27,13 +27,13 @@ const FilterBar = ({
         </button>
       </div>
 
-      {/* Категории */}
-      <div className="filter-bar__categories">
+      <div className="filter-bar__group filter-bar__group--separated">
         {categories.map((cat) => (
           <button
             key={cat}
-            className={`filter-bar__category ${
-              !showFavorites && selected === cat ? 'is-active' : ''
+            type="button"
+            className={`filter-bar__item ${
+              !showFavorites && selected === cat ? "is-active" : ""
             }`}
             onClick={() => {
               onSelect(cat);
